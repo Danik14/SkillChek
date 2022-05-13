@@ -7,7 +7,7 @@ import axios from "axios";
 const OnBoarding = () => {
   const [cookies, setCookie, removeCookie] = useCookies(null);
   const [formData, setFormData] = useState({
-    user_id: cookies.UserId,
+    _id: cookies.UserId,
     first_name: "",
     dob_day: "",
     dob_month: "",
@@ -23,6 +23,7 @@ const OnBoarding = () => {
   let navigate = useNavigate();
 
   const handleSubmit = async (e) => {
+    console.log(formData)
     e.preventDefault();
     try {
       const response = await axios.put("http://localhost:8000/user", {
