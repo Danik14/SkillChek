@@ -4,7 +4,7 @@ const express = require("express");
 const cors = require("cors");
 const path = require('path')
 
-const { MongoClient } = require("mongodb");
+const { MongoClient, ObjectId } = require("mongodb");
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
 const uri =
@@ -94,6 +94,24 @@ app.get("/users", async(req, res) => {
     }
 });
 
+// app.post('/user_test', async(req, res) => {
+//     const client = new MongoClient(uri);
+//     try {
+//         await client.connect();
+//         const database = client.db("skillcheck");
+//         const users = database.collection("users");
+//         let correctData = await users.findOne({ _id: ObjectId(req.body.user_id) });
+//         console.log(correctData);
+//         if (!correctData) {
+//             return res.status(401).send("Error!");
+//         }
+//         return res.status(200).send
+
+//     } catch (err) {
+//         console.log(err);
+//     }
+// })
+
 app.put("/user", async(req, res) => {
     const client = new MongoClient(uri);
     const formData = req.body.formData;
@@ -103,7 +121,7 @@ app.put("/user", async(req, res) => {
         const database = client.db("app-data");
         const users = database.collection("users");
 
-        const query = { user_id: formData.user_id };
+        const query = { _id: ObjectId(formData.user_id) };
 
         const updateDocument = {
             $set: {
