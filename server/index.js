@@ -84,7 +84,7 @@ app.get("/users", async(req, res) => {
     const client = new MongoClient(uri);
     try {
         await client.connect();
-        const database = client.db("app-data");
+        const database = client.db("skillcheck");
         const users = database.collection("users");
 
         const returnedUsers = await users.find().toArray();
@@ -118,7 +118,7 @@ app.put("/user", async(req, res) => {
 
     try {
         await client.connect();
-        const database = client.db("app-data");
+        const database = client.db("skillcheck");
         const users = database.collection("users");
 
         const query = { _id: ObjectId(formData.user_id) };
@@ -137,7 +137,6 @@ app.put("/user", async(req, res) => {
                 matches: formData.matches,
             },
         };
-
         const insertedUser = await users.updateOne(query, updateDocument);
 
         res.json(insertedUser);
