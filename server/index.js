@@ -138,7 +138,7 @@ app.put("/user", async(req, res) => {
             },
         };
         const insertedUser = await users.updateOne(query, updateDocument);
-
+        console.log(formData)
         res.json(insertedUser);
     } finally {
         await client.close();

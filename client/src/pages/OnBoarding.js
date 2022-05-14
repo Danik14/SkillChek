@@ -7,7 +7,7 @@ import axios from "axios";
 const OnBoarding = () => {
   const [cookies, setCookie, removeCookie] = useCookies(null);
   const [formData, setFormData] = useState({
-    _id: cookies.UserId,
+    user_id: cookies.UserId,
     first_name: "",
     dob_day: "",
     dob_month: "",
