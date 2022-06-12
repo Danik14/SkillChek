@@ -23,7 +23,6 @@ const OnBoarding = () => {
   let navigate = useNavigate();
 
   const handleSubmit = async (e) => {
-    console.log(formData)
     e.preventDefault();
     try {
       const response = await axios.put("http://localhost:8000/user", {
@@ -47,7 +46,6 @@ const OnBoarding = () => {
       [name]: value,
     }));
   };
-  console.log(formData);
   return (
     <>
       <Nav minimal={true} setShowModal={() => {}} showModal={false} />

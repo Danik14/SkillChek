@@ -47,15 +47,15 @@ class Person {
   }
 }
 
-let alibaSlave = new Person(
+let Alibek = new Person(
   1,
-  ["gachi", "media technologies", "crossfit"],
-  ["anime", "billy", "gym"]
+  ["algorithms", "media technologies", "crossfit"],
+  ["anime", "billy", "gym", "some desire"]
 );
-let maxatReporter = new Person(
+let Maxat = new Person(
   2,
-  ["anime", "berserk", "gym"],
-  ["media technologies", "digital journalism", "reports"]
+  ["anime", "berserk", "gym", "algorithms"],
+  ["media technologies", "digital journalism", "reports", "some desire"]
 );
 
-console.log(alibaSlave.match(maxatReporter));
+console.log(Alibek.match(Maxat));
