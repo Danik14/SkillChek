@@ -16,7 +16,8 @@ const OnBoarding = () => {
     gender_identity: "man",
     gender_interest: "woman",
     url: "",
-    about: "",
+    skills: [],
+    desires: [],
     matches: [],
   });
 
@@ -172,15 +173,25 @@ const OnBoarding = () => {
               </div>
             </div>
 
-            {/*Not HERE ^*/}
-            <label htmlFor="about">About me</label>
+            <label htmlFor="about">My skills</label>
             <input
-              id="about"
+              id="skills"
               type="text"
-              name="about"
+              name="skills"
               required={true}
-              placeholder={"I like python..."}
-              value={formData.about}
+              placeholder={"Python, java, c#, photoshop"}
+              value={formData.skills}
+              onChange={handleChange}
+            />
+
+            <label htmlFor="about">What I want to learn</label>
+            <input
+              id="desires"
+              type="text"
+              name="desires"
+              required={true}
+              placeholder={"Python, java, c#, photoshop"}
+              value={formData.desires}
               onChange={handleChange}
             />
 

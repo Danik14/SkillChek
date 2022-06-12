@@ -152,7 +152,8 @@ app.put("/user", async (req, res) => {
         gender_identity: formData.gender_identity,
         gender_interest: formData.gender_interest,
         url: formData.url,
-        about: formData.about,
+        skills: formData.skills.split(","),
+        desires: formData.desires.split(","),
         matches: formData.matches,
       },
     };
