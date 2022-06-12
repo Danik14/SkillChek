@@ -6,8 +6,6 @@ import axios from "axios";
 
 const Dashboard = () => {
   const [user, setUser] = useState(null);
-  const [genderedUsers, setGenderedUsers] = useState(null);
-  const [lastDirection, setLastDirection] = useState();
   const [cookies, setCookie, removeCookie] = useCookies(["user"]);
 
   const userId = cookies.UserId;
@@ -23,26 +21,11 @@ const Dashboard = () => {
     }
   };
 
-  const getGenderedUsers = async () => {
-    try {
-      const response = await axios.get("http://localhost:8000/gendered-users", {
-        params: { gender: user?.gender_interest },
-      });
-      setGenderedUsers(response.data);
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
   useEffect(() => {
     getUser();
   }, []);
 
-  useEffect(() => {
-    if (user) {
-      getGenderedUsers();
-    }
-  }, [user]);
+  console.log(user);
 
   const characters = [
     {
@@ -69,7 +52,6 @@ const Dashboard = () => {
 
   const swiped = (direction, nameToDelete) => {
     console.log("removing: " + nameToDelete);
-    setLastDirection(direction);
   };
 
   const outOfFrame = (name) => {
@@ -78,7 +60,7 @@ const Dashboard = () => {
 
   return (
     <div className="Dashboard">
-      <ChatContainer user={user} />
+      <ChatContainer />
       <div className="swipe-container">
         <div className="card-container">
           {characters.map((character) => (
@@ -96,9 +78,7 @@ const Dashboard = () => {
               </div>
             </TinderCard>
           ))}
-          <div className="swipe-info">
-            {lastDirection ? <p>You swiped {lastDirection}</p> : <p />}
-          </div>
+          <div className="swipe-info"></div>
         </div>
       </div>
     </div>

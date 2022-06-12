@@ -83,16 +83,16 @@ app.post("/login", async (req, res) => {
 //get one particular user by id
 app.get("/user", async (req, res) => {
   const client = new MongoClient(uri);
-  const userId = req.query.userId; //getting id from request (axios)
-
+  const userId = ObjectId(req.query.userId); //getting id from request (axios)
   try {
     await client.connect();
-    const database = client.db("app-data");
+    const database = client.db("skillcheck");
     const users = database.collection("users");
 
-    const query = { user_id: userId };
+    const query = { _id: userId };
     const user = await users.findOne(query);
     res.send(user);
+    console.log(user);
   } finally {
     await client.close();
   }
