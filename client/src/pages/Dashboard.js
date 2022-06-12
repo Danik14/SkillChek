@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import ChatContainer from "../components/ChatContainer";
 import { useCookies } from "react-cookie";
 import axios from "axios";
+import UserInfoCard from "../components/UserInfoCard";
 
 const Dashboard = () => {
   const [user, setUser] = useState(null);
@@ -25,7 +26,7 @@ const Dashboard = () => {
     getUser();
   }, []);
 
-  console.log(user);
+  console.log("user", user);
 
   const characters = [
     {
@@ -81,6 +82,7 @@ const Dashboard = () => {
           <div className="swipe-info"></div>
         </div>
       </div>
+      <UserInfoCard />
     </div>
   );
 };
