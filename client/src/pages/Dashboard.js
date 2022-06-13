@@ -7,6 +7,7 @@ import UserInfoCard from "../components/UserInfoCard";
 
 const Dashboard = () => {
   const [user, setUser] = useState(null);
+  const [users, setUsers] = useState(null);
   const [cookies, setCookie, removeCookie] = useCookies(["user"]);
 
   const userId = cookies.UserId;
@@ -22,11 +23,23 @@ const Dashboard = () => {
     }
   };
 
+  const getUsers = async () => {
+    try {
+      const response = await axios.get("http://localhost:8000/users");
+      setUsers(response.data);
+      console.log(users);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   useEffect(() => {
+    getUsers();
     getUser();
   }, []);
 
   console.log("user", user);
+  console.log("users", users);
 
   const characters = [
     {
