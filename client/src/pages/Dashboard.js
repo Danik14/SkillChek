@@ -23,13 +23,23 @@ const Dashboard = () => {
       console.log(error);
     }
   };
+  const getUsers = async () => {
+    try {
+      const response = await axios.get("http://localhost:8000/users");
+      setUsers(response.data);
+      console.log(users);
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
-  // useEffect(() => {
-  //   getUser();
-  // }, []);
+  useEffect(() => {
+    getUsers();
+    getUser();
+  }, []);
 
-  // console.log("user", user);
-  // console.log("users", users);
+  console.log("user", user);
+  console.log("users", users);
 
   const characters = [
     {
@@ -54,12 +64,13 @@ const Dashboard = () => {
     },
   ];
 
-  const plusCounter = () => {
-    setUserCounter(userCounter + 1);
+  const plusCounter =  () => {
+    setUserCounter(userCounter => userCounter+1);
+    console.log(userCounter)
   };
 
   const swiped = (direction, nameToDelete) => {
-    plusCounter();
+    plusCounter()
     console.log("removing: " + nameToDelete);
   };
 
@@ -88,7 +99,7 @@ const Dashboard = () => {
                 className="card"
               >
                 <h3>{user.first_name}</h3>
-              </div>
+              </div> 
             </TinderCard>
           ))}
           <div className="swipe-info"></div>
