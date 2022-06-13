@@ -100,7 +100,12 @@ app.post("/login", async(req, res) => {
         }
         bcrypt.compare(password, correctData.hashed_password, (error, isMatch) => {
             if (isMatch) {
-                return res.status(201).send("You have successfully signed in!");
+                const token = jwt.sign(correctData, email, {
+                    expiresIn: 60 * 24,
+                });
+                res
+                    .status(201)
+                    .json({ token, userId: correctData._id });
             } else {
                 return res.status(401).send("Email or password is not correct!");
             }
