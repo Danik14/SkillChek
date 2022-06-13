@@ -27,8 +27,8 @@ function Chat({ socket, username, room }) {
     }, [socket]);
 
     return (
-        <div className="chat-window">
-            <div className="chat-body">
+        <div>
+            <div>
                 <div className="message-container">
                     {myChat.map((msgInfo) => {
                         return (
@@ -52,11 +52,11 @@ function Chat({ socket, username, room }) {
                     }
                 </div>
             </div>
-            <div className="chat-footer">
+            <div>
                 <input
                     type="text"
                     value={msg}
-                    placeholder="Hey..."
+                    placeholder="Message..."
                     onChange={(event) => {
                         setMsg(event.target.value);
                     }}
