@@ -15,6 +15,7 @@ app.use(cors());
 app.use(express.json());
 const http = require("http");
 const { Server } = require("socket.io");
+const { Console } = require("console");
 
 const server = http.createServer(app);
 
@@ -27,9 +28,10 @@ const io = new Server(server, {
 
 
 io.on("connection", (socket) => {
-
+    console.log("User connected, id: " + socket.id)
     socket.on("join_room", (data) => {
         socket.join(data);
+        console.log(data)
     });
 
     socket.on("send_message", (data) => {

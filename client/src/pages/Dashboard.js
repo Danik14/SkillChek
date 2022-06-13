@@ -65,7 +65,7 @@ const Dashboard = () => {
   ];
 
   const plusCounter =  () => {
-    setUserCounter(userCounter => userCounter+1);
+    setUserCounter(userCounter => userCounter + 1);
     console.log(userCounter)
   };
 
@@ -84,7 +84,7 @@ const Dashboard = () => {
 
   return (
     <div className="Dashboard">
-      <ChatContainer />
+      <ChatContainer user={user} matched_user={users[userCounter]} />
       <div className="swipe-container">
         <div className="card-container">
           {users.map((user) => (
