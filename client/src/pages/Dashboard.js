@@ -8,6 +8,7 @@ import UserInfoCard from "../components/UserInfoCard";
 const Dashboard = () => {
   const [user, setUser] = useState(null);
   const [users, setUsers] = useState(null);
+  const [userCounter, setUserCounter] = useState(0);
   const [cookies, setCookie, removeCookie] = useCookies(["user"]);
 
   const userId = cookies.UserId;
@@ -27,7 +28,6 @@ const Dashboard = () => {
     try {
       const response = await axios.get("http://localhost:8000/users");
       setUsers(response.data);
-      console.log(users);
     } catch (error) {
       console.log(error);
     }
@@ -38,8 +38,8 @@ const Dashboard = () => {
     getUser();
   }, []);
 
-  console.log("user", user);
-  console.log("users", users);
+  // console.log("user", user);
+  // console.log("users", users);
 
   const characters = [
     {
@@ -64,7 +64,12 @@ const Dashboard = () => {
     },
   ];
 
+  const plusCounter = () => {
+    setUserCounter(userCounter + 1);
+  };
+
   const swiped = (direction, nameToDelete) => {
+    plusCounter();
     console.log("removing: " + nameToDelete);
   };
 
@@ -99,7 +104,7 @@ const Dashboard = () => {
           <div className="swipe-info"></div>
         </div>
       </div>
-      <UserInfoCard user={user} />
+      <UserInfoCard user={users[userCounter]} />
     </div>
   );
 };
