@@ -1,8 +1,8 @@
-const UserInfoCard = () => {
+const UserInfoCard = ({ user }) => {
   return (
     <div className="userInfoCard">
-      <p>skills: 1, 2, 3, 4, 5</p>
-      <p>desires: 1, 2, 3, 4, 5</p>
+      <p>skills: {user.skills}</p>
+      <p>desires: {user.desires}</p>
     </div>
   );
 };

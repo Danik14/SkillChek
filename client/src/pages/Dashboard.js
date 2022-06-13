@@ -7,6 +7,8 @@ import UserInfoCard from "../components/UserInfoCard";
 
 const Dashboard = () => {
   const [user, setUser] = useState(null);
+  const [users, setUsers] = useState(null);
+  const [userCounter, setUserCounter] = useState(0);
   const [cookies, setCookie, removeCookie] = useCookies(["user"]);
 
   const userId = cookies.UserId;
@@ -26,7 +28,8 @@ const Dashboard = () => {
   //   getUser();
   // }, []);
 
-  console.log("user", user);
+  // console.log("user", user);
+  // console.log("users", users);
 
   const characters = [
     {
@@ -51,7 +54,12 @@ const Dashboard = () => {
     },
   ];
 
+  const plusCounter = () => {
+    setUserCounter(userCounter + 1);
+  };
+
   const swiped = (direction, nameToDelete) => {
+    plusCounter();
     console.log("removing: " + nameToDelete);
   };
 
@@ -59,30 +67,34 @@ const Dashboard = () => {
     console.log(name + " left the screen!");
   };
 
+  if (user == null || users == null) {
+    return <div>Loading...</div>;
+  }
+
   return (
     <div className="Dashboard">
       <ChatContainer />
       <div className="swipe-container">
         <div className="card-container">
-          {characters.map((character) => (
+          {users.map((user) => (
             <TinderCard
               className="swipe"
-              key={character.name}
-              onSwipe={(dir) => swiped(dir, character.name)}
-              onCardLeftScreen={() => outOfFrame(character.name)}
+              key={user.first_name}
+              onSwipe={(dir) => swiped(dir, user.first_name)}
+              onCardLeftScreen={() => outOfFrame(user.first_name)}
             >
               <div
-                style={{ backgroundImage: "url(" + character.url + ")" }}
+                style={{ backgroundImage: "url(" + user.url + ")" }}
                 className="card"
               >
-                <h3>{character.name}</h3>
+                <h3>{user.first_name}</h3>
               </div>
             </TinderCard>
           ))}
           <div className="swipe-info"></div>
         </div>
       </div>
-      <UserInfoCard />
+      <UserInfoCard user={users[userCounter]} />
     </div>
   );
 };
