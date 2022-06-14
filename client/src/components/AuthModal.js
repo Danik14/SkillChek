@@ -62,56 +62,27 @@ const AuthModal = ({ setShowModal, isSignUp }) => {
         }
     };
 
-    return ( <
-        div className = "auth-modal" >
-        <
-        div className = "close-icon"
-        onClick = { handleClick } > { " " }✖ { " " } <
-        /div>{" "} <
-        h2 > { isSignUp ? "Create Account" : "Log In" } < /h2> <
-        p > { " " }
-        By clicking the submit button below, I hereby agree to and accept the following terms and conditions governing my use of the website
-        function on the SkillCheck™ website. { " " } <
-        /p>{" "} <
-        form onSubmit = { handleSubmit } >
-        <
-        input type = "email"
-        id = "email"
-        name = "email"
-        placeholder = "email"
-        required = { true }
-        onChange = {
-            (e) => setEmail(e.target.value) }
-        /> <
-        input type = "password"
-        id = "password"
-        name = "password"
-        placeholder = "password"
-        required = { true }
-        onChange = {
-            (e) => setPassword(e.target.value) }
-        />{" "} {
-            isSignUp && ( <
-                input type = "password"
-                id = "password-check"
-                name = "password-check"
-                placeholder = "password-check"
-                required = { true }
-                onChange = {
-                    (e) => setConfirmPassword(e.target.value) }
-                />
-            )
-        } { " " } <
-        button className = "secondary-button"
-        type = "submit"
-        onClick = { handleSubmit } >
-        { isSignUp ? "Sign up" : "Sign in" } <
-        /button> { /* <p> {error} </p> */ } <
-        /form>{" "} <
-        hr / >
-        <
-        h2 > Get the App < /h2> <
-        /div>
+    return ( 
+        <div className="auth-modal">
+    <div className="close-icon" onClick={ handleClick }> { " " }✖ { " " }
+    </div>{" "}
+    <h2> { isSignUp ? "Create Account" : "Log In" }
+    </h2>
+    <p> { " " } By clicking the submit button below, I hereby agree to and accept the following terms and conditions governing my use of the website function on the SkillCheck™ website. { " " }
+    </p>{" "}
+    <form onSubmit={ handleSubmit }>
+        <input type="email" id="email" name="email" placeholder="email" required={ true } onChange={ (e)=> setEmail(e.target.value) } />
+        <input type="password" id="password" name="password" placeholder="password" required={ true } onChange={ (e)=> setPassword(e.target.value) } />{" "} { isSignUp && (
+        <input type="password" id="password-check" name="password-check" placeholder="password-check" required={ true } onChange={ (e)=> setConfirmPassword(e.target.value) } /> ) } { " " }
+        <button className="secondary-button" type="submit" onClick={ handleSubmit }>
+                                { isSignUp ? "Sign up" : "Sign in" }
+                                </button> { /*
+        <p> {error} </p> */ }
+    </form>{" "}
+    <hr />
+    <h2> Get the App
+    </h2>
+</div>
     );
 };
 export default AuthModal;

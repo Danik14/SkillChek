@@ -64,14 +64,14 @@ const Dashboard = () => {
     },
   ];
 
-  const plusCounter =  () => {
-    setUserCounter(userCounter => userCounter + 1);
-    console.log(userCounter)
+  const plusCounter = () => {
+    setUserCounter((userCounter) => userCounter + 1);
+    console.log(userCounter);
   };
 
   const swiped = (direction, nameToDelete) => {
-    plusCounter()
     console.log("removing: " + nameToDelete);
+    plusCounter();
   };
 
   const outOfFrame = (name) => {
@@ -99,7 +99,7 @@ const Dashboard = () => {
                 className="card"
               >
                 <h3>{user.first_name}</h3>
-              </div> 
+              </div>
             </TinderCard>
           ))}
           <div className="swipe-info"></div>
