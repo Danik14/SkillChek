@@ -16,6 +16,7 @@ app.use(express.json());
 const http = require("http");
 const { Server } = require("socket.io");
 const { Console } = require("console");
+const { isArray } = require("util");
 
 const server = http.createServer(app);
 
@@ -176,7 +177,8 @@ app.put("/user", async(req, res) => {
         const users = database.collection("users");
 
         const query = { _id: ObjectId(formData.user_id) };
-
+        const userSkills = formData.skills instanceof String ? formData.skills.split(",") : formData.skills;
+        const userDesires = formData.desires instanceof String ? formData.desires.split(",") : formData.desires;
         const updateDocument = {
             $set: {
                 first_name: formData.first_name,
@@ -187,8 +189,8 @@ app.put("/user", async(req, res) => {
                 gender_identity: formData.gender_identity,
                 gender_interest: formData.gender_interest,
                 url: formData.url,
-                skills: formData.skills.split(","),
-                desires: formData.desires.split(","),
+                skills: userSkills,
+                desires: userDesires,
                 matches: formData.matches,
             },
         };

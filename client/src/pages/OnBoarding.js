@@ -1,11 +1,11 @@
 import Nav from "../components/Nav";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useCookies } from "react-cookie";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
 const OnBoarding = () => {
-  const [cookies, setCookie, removeCookie] = useCookies(null);
+  const [cookies, setCookie, removeCookie] = useCookies(["user"]);
   const [formData, setFormData] = useState({
     user_id: cookies.UserId,
     first_name: "",
@@ -21,7 +21,24 @@ const OnBoarding = () => {
     matches: [],
   });
 
+  const userId = cookies.UserId;
+
+  const getUser = async () => {
+    try {
+      const response = await axios.get("http://localhost:8000/user", {
+        params: { userId },
+      });
+      setFormData(response.data);
+      console.log(response.data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
   let navigate = useNavigate();
+  // getUser();
+  useEffect(() => {
+    getUser();
+  }, []);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -47,6 +64,10 @@ const OnBoarding = () => {
       [name]: value,
     }));
   };
+
+  if (formData.first_name === "") {
+    return <div>Loading...</div>;
+  }
   return (
     <>
       <Nav minimal={true} setShowModal={() => {}} showModal={false} />
@@ -203,6 +224,7 @@ const OnBoarding = () => {
               type="url"
               name="url"
               id="url"
+              value={formData.url}
               onChange={handleChange}
               required={true}
             />

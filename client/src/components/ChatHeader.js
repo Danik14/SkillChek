@@ -1,4 +1,5 @@
 import { useCookies } from "react-cookie";
+import { Link } from "react-router-dom";
 
 const ChatHeader = ({ user }) => {
   const [cookies, setCookie, removeCookie] = useCookies(["user"]);
@@ -13,8 +14,12 @@ const ChatHeader = ({ user }) => {
     <div className="chats-container-header">
       <div className="profile-container">
         <div className="img-container">
-          <img src={user.url} alt="Photo of user" />
-          <h3>{user.first_name}</h3>
+          <a href="/onboarding">
+            <img src={user.url} alt="Photo of user" />
+          </a>
+          <a href="/onboarding">
+            <h3>{user.first_name}</h3>
+          </a>
         </div>
         <i className="log-out-icon" onClick={logout}>
           Home
