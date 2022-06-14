@@ -47,15 +47,17 @@ class Person {
   }
 }
 
-let Alibek = new Person(
-  1,
-  ["algorithms", "media technologies", "crossfit"],
-  ["anime", "billy", "gym", "some desire"]
-);
-let Maxat = new Person(
-  2,
-  ["anime", "berserk", "gym", "algorithms"],
-  ["media technologies", "digital journalism", "reports", "some desire"]
-);
+// let Alibek = new Person(
+//   1,
+//   ["algorithms", "media technologies", "crossfit"],
+//   ["anime", "billy", "gym", "some desire"]
+// );
+// let Maxat = new Person(
+//   2,
+//   ["anime", "berserk", "gym", "algorithms"],
+//   ["media technologies", "digital journalism", "reports", "some desire"]
+// );
 
-console.log(Alibek.match(Maxat));
+// console.log(Alibek.match(Maxat));
+
+export default Person;

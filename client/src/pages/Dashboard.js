@@ -23,9 +23,11 @@ const Dashboard = () => {
       console.log(error);
     }
   };
+
   const getUsers = async () => {
     try {
       const response = await axios.get("http://localhost:8000/users");
+      //response.data.filter(id => id != idMain;);
       setUsers(response.data);
       console.log(users);
     } catch (error) {
@@ -34,8 +36,8 @@ const Dashboard = () => {
   };
 
   useEffect(() => {
-    getUsers();
     getUser();
+    getUsers();
   }, []);
 
   console.log("user", user);
@@ -87,25 +89,27 @@ const Dashboard = () => {
       <ChatContainer user={user} matched_user={users[userCounter]} />
       <div className="swipe-container">
         <div className="card-container">
-          {users.map((user) => (
-            <TinderCard
-              className="swipe"
-              key={user.first_name}
-              onSwipe={(dir) => swiped(dir, user.first_name)}
-              onCardLeftScreen={() => outOfFrame(user.first_name)}
-            >
-              <div
-                style={{ backgroundImage: "url(" + user.url + ")" }}
-                className="card"
+          {users
+            .filter((item) => item._id != user._id)
+            .map((user) => (
+              <TinderCard
+                className="swipe"
+                key={user.first_name}
+                onSwipe={(dir) => swiped(dir, user.first_name)}
+                onCardLeftScreen={() => outOfFrame(user.first_name)}
               >
-                <h3>{user.first_name}</h3>
-              </div>
-            </TinderCard>
-          ))}
+                <div
+                  style={{ backgroundImage: "url(" + user.url + ")" }}
+                  className="card"
+                >
+                  <h3>{user.first_name}</h3>
+                </div>
+              </TinderCard>
+            ))}
           <div className="swipe-info"></div>
         </div>
       </div>
-      <UserInfoCard user={users[userCounter]} />
+      <UserInfoCard user={users[userCounter]} userMain={user} />
     </div>
   );
 };
