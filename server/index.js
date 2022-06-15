@@ -176,26 +176,28 @@ app.put("/user", async(req, res) => {
         const database = client.db("skillcheck");
         const users = database.collection("users");
 
-        const query = { _id: ObjectId(formData.user_id) };
-        const userSkills = formData.skills instanceof String ? formData.skills.split(",") : formData.skills;
-        const userDesires = formData.desires instanceof String ? formData.desires.split(",") : formData.desires;
+        const query = { _id: ObjectId(formData._id) };
+        const userSkills = typeof(formData.skills) === String ? formData.skills.split(",") : formData.skills;
+        const userDesires = typeof(formData.desires) === String ? formData.desires.split(",") : formData.desires;
+        const userShow_gender = formData.show_gender === null ? [] : formData.show_gender;
+        const userMatches = formData.matches === null ? [] : formData.matches;
         const updateDocument = {
             $set: {
                 first_name: formData.first_name,
                 dob_day: formData.dob_day,
                 dob_month: formData.dob_month,
                 dob_year: formData.dob_year,
-                show_gender: formData.show_gender,
+                show_gender: userShow_gender,
                 gender_identity: formData.gender_identity,
                 gender_interest: formData.gender_interest,
                 url: formData.url,
                 skills: userSkills,
                 desires: userDesires,
-                matches: formData.matches,
+                matches: userMatches,
             },
         };
         const insertedUser = await users.updateOne(query, updateDocument);
-        console.log(formData);
+        console.log(insertedUser);
         res.json(insertedUser);
     } finally {
         await client.close();

@@ -43,29 +43,6 @@ const Dashboard = () => {
   console.log("user", user);
   console.log("users", users);
 
-  const characters = [
-    {
-      name: "Maxat Issaliyev",
-      url: "https://i.imgur.com/pYGj3TB.jpg",
-    },
-    {
-      name: "Kamal Mamedov",
-      url: "https://i.imgur.com/OoW3AKj.jpg",
-    },
-    {
-      name: "Daniyar Chapagan",
-      url: "https://i.imgur.com/tfIe1FE.jpg",
-    },
-    {
-      name: "Alibek Keneskhanov",
-      url: "https://i.imgur.com/EKiWQTS.jpg",
-    },
-    {
-      name: "Olzhas Aimukhambetov",
-      url: "https://i.imgur.com/wbgC8hv.jpg",
-    },
-  ];
-
   const plusCounter = () => {
     setUserCounter((userCounter) => userCounter + 1);
     console.log(userCounter);

@@ -63,6 +63,7 @@ const OnBoarding = () => {
       ...prevState,
       [name]: value,
     }));
+    console.log(formData);
   };
 
   if (formData.first_name === "") {
