@@ -177,8 +177,8 @@ app.put("/user", async(req, res) => {
         const users = database.collection("users");
 
         const query = { _id: ObjectId(formData._id) };
-        const userSkills = typeof(formData.skills) === String ? formData.skills.split(",") : formData.skills;
-        const userDesires = typeof(formData.desires) === String ? formData.desires.split(",") : formData.desires;
+        const userSkills = typeof formData.skills === "string" ? formData.skills.split(",") : formData.skills;
+        const userDesires = typeof formData.desires === "string" ? formData.desires.split(",") : formData.desires;
         const userShow_gender = formData.show_gender === null ? [] : formData.show_gender;
         const userMatches = formData.matches === null ? [] : formData.matches;
         const updateDocument = {
